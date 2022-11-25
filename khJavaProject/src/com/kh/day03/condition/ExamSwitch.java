@@ -42,7 +42,7 @@ public class ExamSwitch {
 				break;
 			default:
 				System.out.println("0 ~ 4 사이의 숫자를 입력하세요");
-				break;
+//				break;	// default는 마지막에 실행 되어서 break이 의미가 없다.
 		}
 
 	}
