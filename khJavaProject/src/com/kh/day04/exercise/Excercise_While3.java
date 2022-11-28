@@ -19,7 +19,7 @@ public class Excercise_While3 {
 		int input = 0;
 		int sum = 0;
 
-		while (input != -1) {
+		while (true) {
 			System.out.print("정수 하나 입력: ");
 			input = sc.nextInt();
 			if (input == -1) {
