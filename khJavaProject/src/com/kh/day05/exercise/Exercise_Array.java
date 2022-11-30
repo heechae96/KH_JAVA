@@ -78,20 +78,20 @@ public class Exercise_Array {
 		// 성별 자리 이후부터 *로 저장되어 출력되도록 프로그램을 작성하시오
 		// 210618-1124600 -> 210618-1******
 		// 200518-3233920 -> 200518-3******
-		
+
 		Scanner sc = new Scanner(System.in);
 		char[] origin = new char[14];
 		System.out.print("주민등록번호 입력(-포함) : ");
 		String memberNum = sc.next();
-		
+
 		// String으로 입력받은 값을 하나씩 잘라서 origin 문자 배열에 넣기
-		for(int i=0; i<memberNum.length(); i++) {
+		for (int i = 0; i < memberNum.length(); i++) {
 			origin[i] = memberNum.charAt(i);
 			System.out.print(origin[i]);
 		}
-		
+
 		System.out.println("\n------변경후------");
-		
+
 		// 얕은복사 -> 우리가 원하는것이 아님. 원본이 유지가 안됨
 //		char[] copy = origin;
 //		for(int i=0; i<origin.length; i++) {
@@ -101,25 +101,43 @@ public class Exercise_Array {
 //			System.out.print(copy[i]);
 //		}
 
-		
 		// 깊은복사 -> 우리가 원하는것. 원본가 복사본이 따로 따로
-		char[] copy = new char[14];	// 새로운 배열을 만들어서
-		for(int i=0; i<origin.length; i++) {	// 복사해줘야 한다
-			if(i>7) {
+		char[] copy = new char[14]; // 새로운 배열을 만들어서
+		for (int i = 0; i < origin.length; i++) { // 복사해줘야 한다
+			if (i > 7) {
 				copy[i] = '*';
-			}else {
-				copy[i] = origin[i]; 
+			} else {
+				copy[i] = origin[i];
 			}
 			System.out.print(copy[i]);
 		}
-		
+
 		System.out.println("\n------원본출력------");
-		
-		for(int i=0; i<origin.length; i++) {
+
+		for (int i = 0; i < origin.length; i++) {
 			System.out.print(origin[i]);
 		}
 
+	}
 
+	public void exercise6() {
+		int[] nums = { 1, 2, 3, 4, 5 };
+//		for(int i=0; i<nums.length; i++) {
+//			System.out.print(nums[i]+" ");
+//		}
+		for(int num : nums) {
+			System.out.print(num+" ");
+		}
+	}
+	
+	public void exercise7() {
+		String[] fruits = {"딸기", "복숭아", "포도", "체리", "망고"};
+//		for(int i=0; i<fruits.length; i++) {
+//			System.out.print(fruits[i]+" ");
+//		}
+		for (String fruit : fruits) {
+			System.out.print(fruit+" ");
+		}
 	}
 
 	public static void main(String[] args) {
@@ -128,7 +146,9 @@ public class Exercise_Array {
 //		ex.exercise2();
 //		ex.exercise3();
 //		ex.exercise4();
-		ex.exercise5();
+//		ex.exercise5();
+//		ex.exercise6();
+		ex.exercise7();
 
 	}
 
