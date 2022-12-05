@@ -1,4 +1,4 @@
-package com.kh.day08.miniProject;
+package com.kh.RegisterMiniProject;
 
 public class RegisterRun {
 
