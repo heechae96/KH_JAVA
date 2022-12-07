@@ -15,7 +15,11 @@ public class Exam_StringBuffer {
 
 		// 메소드체이닝 가능
 		// 자기 자신의 메소드를 호출하여 자기 자신의 값을 바꿔나가는 것
-		StringBuffer stb = new StringBuffer().append("KH").append(" Java Class").append(" F class").append(" Hot");
+		StringBuffer stb = new StringBuffer()
+							.append("KH")
+							.append(" Java Class")
+							.append(" F class")
+							.append(" Hot");
 		System.out.println("연결된 문자열: " + stb.toString());
 		
 	}
