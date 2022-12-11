@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Arrays;
 import java.util.Random;
 
 public class BaseballServer {
@@ -37,6 +38,7 @@ public class BaseballServer {
 
 			Random rand = new Random();
 
+			// ★★★ 로또 프로그램에서 사용했던 방법 ★★★
 			// 번호 3개를 뽑은 후에 게임 준비해야함
 			for (int i = 0; i < numbers.length; i++) {
 				// 1부터 9사이의 랜덤한 숫자
@@ -55,21 +57,56 @@ public class BaseballServer {
 			// 값 받기
 			String readNum = dis.readUTF();
 			System.out.println("받은값: " + readNum);
-			
+
+			// 넘어온값은 String. 비교하려면 문자열 배열이 편리
+			// 비교하려는 대상을 일치시켜줘야 한다(String -> int)
+			String[] readUpdateNum = readNum.split(" ");
+			int[] readUpdateIntNum = new int[3];
+			for (int i = 0; i < readUpdateNum.length; i++) {
+				readUpdateIntNum[i] = Integer.parseInt(readUpdateNum[i]);
+			}
+
 			/*
-			 * 받은 값이 numbers의 값과 비교했을 때
-			 * 숫자가 맞고 위치도 맞는지
-			 * 숫자는 맞는데 위치는 틀린지
-			 * 아무것도 맞지 않았는지를
-			 * 스트라이크, 볼로 출력해준다
+			 * 받은 값이 numbers의 값과 비교했을 때 숫자가 맞고 위치도 맞는지 숫자는 맞는데 위치는 틀린지 아무것도 맞지 않았는지를 스트라이크,
+			 * 볼로 출력해준다
 			 */
+
+			// 인덱스랑 값 둘 다 비교해야함..
+			// 중첩 for문 필요
 			int strike = 0;
 			int ball = 0;
-			System.out.println(strike + "스트라이크 " + ball + "볼");
-			
+			int cnt = 0; // 인덱스랑 값이 3개 모두 같으면 4볼로 진루 시키기 위한 변수
+			int check = 0; // 값이 일치하는게 없는 경우 스트라이크를 올려주기 위한 변수
+
+			for (int i = 0; i < numbers.length; i++) {
+				for (int j = 0; j < readUpdateIntNum.length; j++) {
+					if (numbers[i] == readUpdateIntNum[j]) {
+						ball++; // 값은 일치
+						if (i == j) {
+							cnt++; // 값이 같은게 있는 경우 + 인덱스까지 일치하는 경우
+						}
+					} else {
+						check++;
+						if (check == 3) {
+							strike++;
+						}
+					}
+				}
+				check = 0;
+			}
+
+			if (cnt == 3) { // 포볼로 진루
+				ball++;
+			}
+
 			// 클라이언트로 결과값 보내주기!
-			
-			// 스트라이크가 3이면 게임종료하기
+			System.out.println(strike + "스트라이크 " + ball + "볼");
+			if (ball == 4) {
+				System.out.println("포볼로 1루로 진루");
+			}
+			if (strike == 3) {
+				System.out.println("스트라이크 아웃!!!");
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
