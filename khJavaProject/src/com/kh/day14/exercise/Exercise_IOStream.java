@@ -1,9 +1,12 @@
 package com.kh.day14.exercise;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Exercise_IOStream {
@@ -94,6 +97,7 @@ public class Exercise_IOStream {
 					"/Users/shinheechae/git/KH_edu/khJavaProject/src/ioStream/file/" + fileName + ".txt"); // 파일 생성
 			String data = info.getName() + "/ " + info.getAge() + "/ " + info.getAddr();
 			writer.write(data);
+			System.out.println("================ 저장 완료 ================");
 			writer.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -108,7 +112,32 @@ public class Exercise_IOStream {
 
 	public void load() {
 		Reader reader = null;
-		
+
+		Scanner sc = new Scanner(System.in);
+		System.out.print("파일의 제목 >> ");
+		String fileName = sc.next();
+
+		try {
+			reader = new FileReader(
+					"/Users/shinheechae/git/KH_edu/khJavaProject/src/ioStream/file/" + fileName + ".txt");
+			
+			char[] cBuf = new char[100];
+			reader.read(cBuf, 0, 100);	
+			String str = new String(cBuf);
+			String[] splStr = str.split("/ ");
+			System.out.println(Arrays.toString(splStr));
+			info = new Info(splStr[0], Integer.parseInt(splStr[1]), splStr[2]);
+			
+			System.out.println("================ 로드 완료 ================");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close(); 
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

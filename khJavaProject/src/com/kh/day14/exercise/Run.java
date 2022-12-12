@@ -26,7 +26,7 @@ public class Run {
 				case 0:
 					break EXIT;
 				default:
-					System.out.println("올바른 번호를 입력하세요");
+					System.out.println("===== 올바른 번호를 입력하세요!!! =====");
 					break;
 			}
 		}
