@@ -1,5 +1,9 @@
 package com.kh.day14.exercise;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.Scanner;
 
 public class Exercise_IOStream {
@@ -38,23 +42,27 @@ public class Exercise_IOStream {
 	// 이름 : 이용자
 	// 나이 : 22
 	// 주소 : 서울시 중구
-	
-	Info info = null;
-	
+
+	Info info;
+
+	public Exercise_IOStream() {
+		info = new Info();
+	}
+
 	public int printMenu() {
 		System.out.println("1. 정보입력");
 		System.out.println("2. 정보출력");
 		System.out.println("3. 정보저장(save)");
 		System.out.println("4. 정보불러오기(load)");
 		System.out.println("0. 종료");
-		System.out.print("메뉴 입력 :");
+		System.out.print("메뉴 입력 : ");
 
 		Scanner sc = new Scanner(System.in);
 		int num = sc.nextInt();
+//		sc.nextLine();
 
 		return num;
 	}
-	
 
 	public void insertInfo() {
 		Scanner sc = new Scanner(System.in);
@@ -62,31 +70,45 @@ public class Exercise_IOStream {
 		String name = sc.next();
 		System.out.print("나이 입력: ");
 		int age = sc.nextInt();
+		sc.nextLine();
 		System.out.print("주소 입력: ");
 		String addr = sc.nextLine();
-		
-//		info.setName(name);
-//		info.setAge(age);
-//		info.setAddr(addr);
-		
+		System.out.println("==============================================");
+
 		info = new Info(name, age, addr);
 	}
-	
+
 	public void printInfo() {
 		System.out.println("이름: " + info.getName());
 		System.out.println("나이: " + info.getAge());
 		System.out.println("주소: " + info.getAddr());
-		
+		System.out.println("==============================================");
 	}
 
 	public void save() {
-		// TODO Auto-generated method stub
-		
+		String fileName = info.getName();
+		Writer writer = null;
+
+		try {
+			writer = new FileWriter(
+					"/Users/shinheechae/git/KH_edu/khJavaProject/src/ioStream/file/" + fileName + ".txt"); // 파일 생성
+			String data = info.getName() + "/ " + info.getAge() + "/ " + info.getAddr();
+			writer.write(data);
+			writer.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void load() {
-		// TODO Auto-generated method stub
+		Reader reader = null;
 		
 	}
-	
+
 }
