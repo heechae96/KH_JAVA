@@ -1,5 +1,6 @@
 package com.kh.day14.exercise;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -8,6 +9,7 @@ import java.io.Reader;
 import java.io.Writer;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Exercise_IOStream {
 
@@ -98,7 +100,7 @@ public class Exercise_IOStream {
 			String data = info.getName() + "/ " + info.getAge() + "/ " + info.getAddr();
 			writer.write(data);
 			System.out.println("================ 저장 완료 ================");
-			writer.flush();
+			writer.flush();	// close()안해주려면 반드시 flush필요!
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -116,19 +118,33 @@ public class Exercise_IOStream {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("파일의 제목 >> ");
 		String fileName = sc.next();
+		BufferedReader bfReader = null;
+		String result = "";
 
 		try {
 			reader = new FileReader(
 					"/Users/shinheechae/git/KH_edu/khJavaProject/src/ioStream/file/" + fileName + ".txt");
 			
-			char[] cBuf = new char[100];
-			reader.read(cBuf, 0, 100);	
-			String str = new String(cBuf);
-			String[] splStr = str.split("/ ");
-			System.out.println(Arrays.toString(splStr));
-			info = new Info(splStr[0], Integer.parseInt(splStr[1]), splStr[2]);
+			bfReader = new BufferedReader(reader);	// reader.read()로 받으면 복잡함
+			result = bfReader.readLine();
 			
+//			// 방법1) split()
+//			String[] splStr = result.split("/ ");
+//			// System.out.println(Arrays.toString(splStr));
+//			info = new Info(splStr[0], Integer.parseInt(splStr[1]), splStr[2]);
+//			System.out.println("================ 로드 완료 ================");
+			
+			// 방법2) StringTokenizer
+			StringTokenizer st = new StringTokenizer(result, "/");
+//			StringTokenizer st = new StringTokenizer(result, "/ ");	// 주소 중간에 공백때문에 뒷 부분이 날라감
+			info = new Info(st.nextToken(), Integer.parseInt(st.nextToken().trim()), st.nextToken().trim());
+//			while(st.hasMoreTokens()) {
+//				System.out.println(st.nextToken());
+//			}
 			System.out.println("================ 로드 완료 ================");
+			System.out.println("정보 출력이 가능합니다. 2번을 눌러주세요!!!");
+			System.out.println("===========================================");
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
