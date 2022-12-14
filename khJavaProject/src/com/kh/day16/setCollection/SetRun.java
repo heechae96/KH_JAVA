@@ -47,8 +47,6 @@ public class SetRun {
 		// 임시 또는 영구적으로 저장을 함
 		// 자료구조의 특성에 따라서 List, Set, Map을 선택하여 쓸 수 있음
 
-		System.out.println("=========================");
-
 		Set<Student> set3 = new HashSet<Student>();
 		Student std = new Student("김자바", 10, 30);
 		set3.add(std);

@@ -41,34 +41,34 @@ public class Student {
 		this.score2 = score2;
 	}
 
-//	@Override
-//	public int hashCode() {
-//		return (this.name + this.score1 + this.score2).hashCode();
-//	}
+	@Override
+	public int hashCode() {
+		return (this.name + this.score1 + this.score2).hashCode();
+	}
 
 //	@Override
 //	public int hashCode() {
 //		return Objects.hash(name, score1, score2);
 //	}
 
-//	@Override
-//	public boolean equals(Object obj) {
-//		if (obj instanceof Student) {
-//			Student std = (Student) obj;
-//			return this.hashCode() == std.hashCode();
-//		} else {
-//			return false;
-//		}
-//	}
-
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof Student))
+		if (obj instanceof Student) {
+			Student std = (Student) obj;
+			return this.hashCode() == std.hashCode();
+		} else {
 			return false;
-
-		Student std = (Student) obj;
-		return this.name.equals(std.name) && this.score1 == std.score1 && this.score2 == std.score2;
+		}
 	}
+
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (!(obj instanceof Student))
+//			return false;
+//
+//		Student std = (Student) obj;
+//		return this.name.equals(std.name) && this.score1 == std.score1 && this.score2 == std.score2;
+//	}
 
 	@Override
 	public String toString() {
