@@ -80,8 +80,29 @@ public class MemberView {
 		System.out.println(m);
 	}
 
-	public void deleteMemberById(Member m) {
-		System.out.println(m);
+	public Member updateMember() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("변경할 비밀번호: ");
+		String memberPwd = sc.next();
+		System.out.print("변경할 이름: ");
+		String memberName = sc.next();
+		System.out.print("변경할 나이: ");
+		int memberAge = sc.nextInt();
+		System.out.print("변경할 성별: ");
+		String memberGender = sc.next();
+		System.out.print("변경할 이메일: ");
+		String memberEmail = sc.next();
+		System.out.print("변경할 전화번호: ");
+		String memberPhone = sc.next();
+		System.out.print("변경할 주소: ");
+		sc.nextLine(); // nextLine()전 기존 버퍼 비워줘야함
+		String memberAddress = sc.nextLine();
+		System.out.print("변경할 취미: ");
+		String memberHobby = sc.next();
+
+		return new Member(memberPwd, memberName, memberAge, memberGender, memberEmail, memberPhone,
+				memberAddress, memberHobby);
+
 	}
 
 }

@@ -34,6 +34,19 @@ public class Member {
 		this.memberAddress = memberAddress;
 		this.memberHobby = memberHobby;
 	}
+	
+	public Member(String memberPwd, String memberName, int memberAge, String memberGender,
+			String memberEmail, String memberPhone, String memberAddress, String memberHobby) {
+		super();
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+		this.memberAge = memberAge;
+		this.memberGender = memberGender;
+		this.memberEmail = memberEmail;
+		this.memberPhone = memberPhone;
+		this.memberAddress = memberAddress;
+		this.memberHobby = memberHobby;
+	}
 
 	// Getters and Setters
 	public String getMemberId() {
