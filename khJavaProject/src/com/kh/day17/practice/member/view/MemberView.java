@@ -100,9 +100,19 @@ public class MemberView {
 		System.out.print("변경할 취미: ");
 		String memberHobby = sc.next();
 
-		return new Member(memberPwd, memberName, memberAge, memberGender, memberEmail, memberPhone,
-				memberAddress, memberHobby);
+		return new Member(memberPwd, memberName, memberAge, memberGender, memberEmail, memberPhone, memberAddress,
+				memberHobby);
 
+	}
+
+	// 성공 메세지
+	public void displaySuccess(String msg) {
+		System.out.println("처리 결과 : " + msg);
+	}
+
+	// 실패 메세지
+	public void displayError(String msg) {
+		System.out.println("처리 결과 : " + msg);
 	}
 
 }

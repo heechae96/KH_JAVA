@@ -77,13 +77,4 @@ public class MemberController {
 		}
 	}
 
-	// 성공 메세지
-	public void displaySuccess(String msg) {
-		System.out.println("처리 결과 : " + msg);
-	}
-
-	// 실패 메세지
-	public void displayError(String msg) {
-		System.out.println("처리 결과 : " + msg);
-	}
 }
