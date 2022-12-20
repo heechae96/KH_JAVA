@@ -59,7 +59,7 @@ public class MusicView {
 	public void showOneMusic(Music music) {
 		System.out.println("검색한 곡의 곡명은: " + music.getTitle() + ", 가수명 : " + music.getSinger());
 	}
-	
+
 	public Music modifyMusicInfo(Music music) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("수정할 가수명 입력: ");
@@ -67,7 +67,7 @@ public class MusicView {
 		music.setSinger(singer);
 		return music;
 	}
-	
+
 	public Music modifyMusicInfo() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("수정할 곡명 입력: ");
@@ -76,6 +76,18 @@ public class MusicView {
 		String singer = sc.nextLine();
 		Music music = new Music(title, singer);
 		return music;
+	}
+
+	public void displaySuccess(String msg) {
+		System.out.println("[성공] : " + msg);
+	}
+
+	public void displayError(String msg) {
+		System.out.println("[실패] : " + msg);
+	}
+	
+	public void printMessage(String message) {
+		System.out.println(message);
 	}
 
 }
